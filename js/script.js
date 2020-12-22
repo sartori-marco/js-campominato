@@ -12,7 +12,10 @@
 var numeriUtente = [];
 var numeriPc = [];
 
-// 16 NUMERI 1 A 100 + LI PUSHO + NO RIPETIZIONI
+var tentativi = 100 - 16;
+
+
+// PC 16 NUMERI 1 A 100 + LI PUSHO + NO RIPETIZIONI
 while (numeriPc.length < 16) {
   var numRandom = numeriRandom (1,100);
   if (!numeriPc.includes(numRandom)) {
@@ -22,6 +25,9 @@ while (numeriPc.length < 16) {
 console.log(numeriPc);
 
 
+// UTENTE NUMERI
+var numeriUtente = inserimentoNumeriUtente(tentativi);
+console.log(numeriUtente);
 
 
 
@@ -32,7 +38,24 @@ function numeriRandom(min,max){
 }
 
 
-
+//UTENTE NUMERI
+function inserimentoNumeriUtente(n){
+  var sentinella = true;
+  while (numeriUtente.length < n && sentinella) {
+    var numUtente = parseInt(prompt('inserisci un numero compreso tra 1 e 100'));
+    if (numeriUtente.includes(numUtente)) {
+      alert('Numero inserito due volte');
+    }
+    else if (!numeriPc.includes(numUtente)) {
+      numeriUtente.push(numUtente);
+    }
+    else {
+      sentinella = false;
+      alert('Hai perso, ritenta');
+    }
+  }
+  return (numUtente);
+}
 
 
 
